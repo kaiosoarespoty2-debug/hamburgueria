@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fast-Zap | Hamburgueria Popular</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         TELA DE CADASTRO
+    ====================================================== -->
+
+    <section id="telaCadastro">
+
+        <div class="cadastro-card">
+
+            <div class="logo">
+                🍔
+            </div>
+
+            <h1>Fast-Zap</h1>
+
+            <p>
+                Hamburgueria Popular<br>
+                Faça seu cadastro para começar.
+            </p>
+
+            <div class="campo">
+
+                <label for="nome">
+                    Nome *
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome"
+                >
+
+            </div>
+
+            <div class="campo">
+
+                <label for="telefone">
+                    Telefone *
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefone"
+                    placeholder="(83) 99999-9999"
+                    maxlength="15"
+                    oninput="mascaraTelefone(this)"
+                >
+
+            </div>
+
+            <button
+                class="btn-principal"
+                onclick="entrarNoCardapio()"
+            >
+                Ver Cardápio 🍔
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TELA DO CARDÁPIO
+    ====================================================== -->
+
+    <section id="telaCardapio">
+
+        <header>
+
+            <div class="header-logo">
+                🍔 Fast-Zap
+            </div>
+
+            <div class="cliente-header">
+                Olá,
+                <strong id="nomeCliente"></strong>!
+            </div>
+
+            <button
+                class="btn-sair"
+                onclick="voltarCadastro()"
+            >
+                Trocar cliente
+            </button>
+
+        </header>
+
+
+        <main class="container">
+
+            <!-- Busca -->
+
+            <div class="topo-cardapio">
+
+                <h2>
+                    Nosso Cardápio
+                </h2>
+
+                <input
+                    type="search"
+                    class="busca"
+                    id="busca"
+                    placeholder="🔎 Procurar produto..."
+                    oninput="filtrarProdutos()"
+                >
+
+            </div>
+
+
+            <!-- Categorias -->
+
+            <div
+                class="categorias"
+                id="categorias"
+            ></div>
+
+
+            <!-- Produtos -->
+
+            <div
+                class="produtos"
+                id="listaProdutos"
+            ></div>
+
+
+            <!-- =================================================
+                 CARRINHO
+            ================================================== -->
+
+            <section
+                class="carrinho"
+                id="carrinho"
+            >
+
+                <div class="carrinho-titulo">
+
+                    <h2>
+                        🛒 Seu Carrinho
+                    </h2>
+
+                    <div
+                        class="contador"
+                        id="contadorItens"
+                    >
+                        0
+                    </div>
+
+                    <button
+                        class="btn-limpar"
+                        onclick="limparCarrinho()"
+                    >
+                        Limpar
+                    </button>
+
+                </div>
+
+
+                <div id="listaCarrinho">
+
+                    <p class="carrinho-vazio">
+                        Seu carrinho está vazio.
+                    </p>
+
+                </div>
+
+
+                <!-- Valores -->
+
+                <div class="resumo-valores">
+
+                    <div class="linha-valor">
+
+                        <span>
+                            Subtotal
+                        </span>
+
+                        <span id="subtotal">
+                            R$ 0,00
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha-valor">
+
+                        <span>
+                            Taxa de entrega
+                        </span>
+
+                        <span id="taxaEntrega">
+                            R$ 0,00
+                        </span>
+
+                    </div>
+
+
+                    <div class="linha-total">
+
+                        <span>
+                            TOTAL
+                        </span>
+
+                        <span id="total">
+                            R$ 0,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ENTREGA / RETIRADA
+                ================================================== -->
+
+                <div class="secao-pedido">
+
+                    <h3>
+                        🚚 Como deseja receber?
+                    </h3>
+
+                    <div class="opcoes-grid">
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="entrega"
+                                value="Entrega"
+                                onchange="mostrarEndereco()"
+                            >
+
+                            <span>
+                                🚚
+                                <strong>Entrega</strong>
+                                <br>
+                                Receba em casa
+                            </span>
+
+                        </label>
+
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="entrega"
+                                value="Retirar no local"
+                                onchange="mostrarEndereco()"
+                            >
+
+                            <span>
+                                🏪
+                                <strong>Retirar</strong>
+                                <br>
+                                Buscar no local
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Endereço -->
+
+                    <div
+                        class="form-endereco"
+                        id="formEndereco"
+                    >
+
+                        <div class="endereco-grid">
+
+                            <div class="campo campo-full">
+
+                                <label>
+                                    Rua *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="rua"
+                                    placeholder="Nome da rua"
+                                >
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label>
+                                    Número *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="numero"
+                                    placeholder="Ex.: 123"
+                                >
+
+                            </div>
+
+
+                            <div class="campo">
+
+                                <label>
+                                    Bairro *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="bairro"
+                                    placeholder="Seu bairro"
+                                >
+
+                            </div>
+
+
+                            <div class="campo campo-full">
+
+                                <label>
+                                    Ponto de referência
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="referencia"
+                                    placeholder="Ex.: perto da praça"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     PAGAMENTO
+                ================================================== -->
+
+                <div class="secao-pedido">
+
+                    <h3>
+                        💳 Forma de pagamento
+                    </h3>
+
+                    <div class="opcoes-grid">
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Dinheiro"
+                                onchange="mostrarTroco()"
+                            >
+
+                            💵 Dinheiro
+
+                        </label>
+
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Pix"
+                                onchange="mostrarTroco()"
+                            >
+
+                            📱 Pix
+
+                        </label>
+
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Cartão"
+                                onchange="mostrarTroco()"
+                            >
+
+                            💳 Cartão
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        class="troco"
+                        id="campoTroco"
+                    >
+
+                        <div class="campo">
+
+                            <label>
+                                Troco para quanto?
+                            </label>
+
+                            <input
+                                type="number"
+                                id="troco"
+                                min="0"
+                                step="0.01"
+                                placeholder="Ex.: 50,00"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     OBSERVAÇÃO
+                ================================================== -->
+
+                <div class="secao-pedido">
+
+                    <h3>
+                        📝 Observação do pedido
+                    </h3>
+
+                    <div class="campo">
+
+                        <textarea
+                            id="observacaoGeral"
+                            rows="3"
+                            placeholder="Ex.: Entregar sem cebola..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     FORMA DE PEDIDO
+                ================================================== -->
+
+                <div class="secao-pedido">
+
+                    <h3>
+                        📱 Como deseja fazer o pedido?
+                    </h3>
+
+                    <div class="opcoes-grid">
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="formaPedido"
+                                value="whatsapp"
+                            >
+
+                            📱
+                            <strong>WhatsApp</strong>
+
+                        </label>
+
+
+                        <label class="opcao">
+
+                            <input
+                                type="radio"
+                                name="formaPedido"
+                                value="site"
+                            >
+
+                            🌐
+                            <strong>Pelo site</strong>
+
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        class="btn-finalizar"
+                        onclick="mostrarResumo()"
+                    >
+                        Conferir e Finalizar Pedido
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     RESUMO
+                ================================================== -->
+
+                <div id="areaResumo">
+
+                    <h3>
+                        📋 Confira seu pedido
+                    </h3>
+
+                    <div id="conteudoResumo"></div>
+
+                    <div class="botoes-resumo">
+
+                        <button
+                            class="btn-cancelar"
+                            onclick="fecharResumo()"
+                        >
+                            Voltar
+                        </button>
+
+                        <button
+                            class="btn-confirmar"
+                            onclick="confirmarPedido()"
+                        >
+                            Confirmar Pedido
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- Carrinho flutuante no celular -->
+
+        <div class="carrinho-flutuante">
+
+            <div>
+
+                🛒
+                <strong id="contadorFlutuante">
+                    0
+                </strong>
+                itens
+
+                <br>
+
+                <strong id="totalFlutuante">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <button onclick="irParaCarrinho()">
+                Ver carrinho
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         TELA DE PEDIDO REALIZADO
+    ====================================================== -->
+
+    <section id="telaPedido">
+
+        <div class="pedido-card">
+
+            <div class="pedido-sucesso">
+                🎉
+            </div>
+
+            <h1>
+                Pedido realizado!
+            </h1>
+
+            <p>
+                Obrigado por pedir na Hamburgueria Popular.
+            </p>
+
+            <div
+                class="numero-pedido"
+                id="numeroPedido"
+            >
+                Pedido #0000
+            </div>
+
+
+            <div class="status-pedido">
+
+                <div
+                    class="status ativo"
+                    id="status1"
+                >
+
+                    <div class="status-icone">
+                        ✓
+                    </div>
+
+                    <span>
+                        Pedido recebido
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="status"
+                    id="status2"
+                >
+
+                    <div class="status-icone">
+                        👨‍🍳
+                    </div>
+
+                    <span>
+                        Preparando pedido
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="status"
+                    id="status3"
+                >
+
+                    <div class="status-icone">
+                        🛵
+                    </div>
+
+                    <span>
+                        Saiu para entrega
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="status"
+                    id="status4"
+                >
+
+                    <div class="status-icone">
+                        🎉
+                    </div>
+
+                    <span>
+                        Pedido entregue
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn-voltar"
+                onclick="voltarAoCardapio()"
+            >
+                Voltar ao Cardápio
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MODAL DE PRODUTO
+    ====================================================== -->
+
+    <div id="modalProduto">
+
+        <div class="modal-card">
+
+            <div class="modal-topo">
+
+                <h2 id="modalNome">
+                    Produto
+                </h2>
+
+                <button onclick="fecharModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <p id="modalDescricao"></p>
+
+
+            <div
+                class="modal-preco"
+                id="modalPreco"
+            >
+                R$ 0,00
+            </div>
+
+
+            <h3>
+                Adicionais
+            </h3>
+
+
+            <div class="adicionais">
+
+                <label class="adicional">
+
+                    <span>
+                        🧀 Queijo extra
+                    </span>
+
+                    <span>
+
+                        + R$ 3,00
+
+                        <input
+                            type="checkbox"
+                            value="Queijo extra"
+                            data-preco="3"
+                            onchange="atualizarPrecoModal()"
+                        >
+
+                    </span>
+
+                </label>
+
+
+                <label class="adicional">
+
+                    <span>
+                        🥓 Bacon extra
+                    </span>
+
+                    <span>
+
+                        + R$ 4,00
+
+                        <input
+                            type="checkbox"
+                            value="Bacon extra"
+                            data-preco="4"
+                            onchange="atualizarPrecoModal()"
+                        >
+
+                    </span>
+
+                </label>
+
+
+                <label class="adicional">
+
+                    <span>
+                        🍳 Ovo extra
+                    </span>
+
+                    <span>
+
+                        + R$ 2,00
+
+                        <input
+                            type="checkbox"
+                            value="Ovo extra"
+                            data-preco="2"
+                            onchange="atualizarPrecoModal()"
+                        >
+
+                    </span>
+
+                </label>
+
+            </div>
+
+
+            <div
+                class="campo"
+                style="margin-top:20px;"
+            >
+
+                <label>
+                    Observação
+                </label>
+
+                <textarea
+                    id="observacaoProduto"
+                    rows="3"
+                    placeholder="Ex.: sem cebola..."
+                ></textarea>
+
+            </div>
+
+
+            <button
+                class="btn-principal"
+                onclick="adicionarProdutoPersonalizado()"
+            >
+                Adicionar ao Carrinho
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

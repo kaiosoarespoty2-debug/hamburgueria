@@ -1,0 +1,1261 @@
+/* =========================================================
+   RESET E CONFIGURAÇÕES GERAIS
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+body {
+    background: #f5f5f5;
+    color: #222;
+}
+
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   TELA DE CADASTRO
+========================================================= */
+
+#telaCadastro {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6500,
+            #ff9d2e
+        );
+}
+
+
+.cadastro-card {
+    width: 100%;
+
+    max-width: 440px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.2);
+
+    text-align: center;
+}
+
+
+.logo {
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+
+.cadastro-card h1 {
+    color: #ff6500;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+
+.cadastro-card p {
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+.campo {
+    text-align: left;
+
+    margin-bottom: 16px;
+}
+
+
+.campo label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+
+.campo input,
+.campo textarea,
+.campo select {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+    border-color: #ff6500;
+}
+
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+.btn-principal {
+    width: 100%;
+
+    border: none;
+
+    padding: 15px;
+
+    border-radius: 11px;
+
+    background: #ff6500;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+.btn-principal:hover {
+    background: #e95700;
+}
+
+
+/* =========================================================
+   CARDÁPIO
+========================================================= */
+
+#telaCardapio {
+    display: none;
+
+    min-height: 100vh;
+}
+
+
+header {
+    background: #ff6500;
+
+    color: white;
+
+    padding: 18px 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-logo {
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+
+.cliente-header {
+    font-size: 15px;
+}
+
+
+.btn-sair {
+    border: 1px solid rgba(255,255,255,0.6);
+
+    background: transparent;
+
+    color: white;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+}
+
+
+.container {
+    max-width: 1150px;
+
+    margin: auto;
+
+    padding: 25px 20px 140px;
+}
+
+
+/* =========================================================
+   BUSCA
+========================================================= */
+
+.topo-cardapio {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+
+    flex-wrap: wrap;
+}
+
+
+.topo-cardapio h2 {
+    font-size: 28px;
+}
+
+
+.busca {
+    width: 100%;
+
+    max-width: 380px;
+
+    padding: 13px 16px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+
+.busca:focus {
+    border-color: #ff6500;
+}
+
+
+/* =========================================================
+   CATEGORIAS
+========================================================= */
+
+.categorias {
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding-bottom: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.categoria-btn {
+    border: 1px solid #ddd;
+
+    background: white;
+
+    padding: 10px 16px;
+
+    border-radius: 30px;
+
+    white-space: nowrap;
+
+    font-weight: bold;
+}
+
+
+.categoria-btn.ativa {
+    background: #ff6500;
+
+    color: white;
+
+    border-color: #ff6500;
+}
+
+
+/* =========================================================
+   PRODUTOS
+========================================================= */
+
+.produtos {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.produto {
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.08);
+}
+
+
+.produto-imagem {
+    height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 85px;
+
+    background: #fff0e5;
+
+    overflow: hidden;
+}
+
+
+.produto-imagem img {
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.produto-conteudo {
+    padding: 18px;
+}
+
+
+.produto-categoria {
+    color: #ff6500;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    margin-bottom: 6px;
+}
+
+
+.produto h3 {
+    font-size: 21px;
+
+    margin-bottom: 7px;
+}
+
+
+.produto-descricao {
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    min-height: 40px;
+
+    margin-bottom: 12px;
+}
+
+
+.produto-rodape {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.produto-preco {
+    color: #ff6500;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+
+.btn-adicionar {
+    border: none;
+
+    background: #ff6500;
+
+    color: white;
+
+    padding: 11px 15px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+
+.btn-adicionar:hover {
+    background: #e95700;
+}
+
+
+.sem-produtos {
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 15px;
+
+    color: #777;
+}
+
+
+/* =========================================================
+   CARRINHO
+========================================================= */
+
+.carrinho {
+    background: white;
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 18px rgba(0,0,0,0.08);
+}
+
+
+.carrinho-titulo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+
+.carrinho-titulo h2 {
+    font-size: 23px;
+}
+
+
+.contador {
+    background: #ff6500;
+
+    color: white;
+
+    min-width: 30px;
+
+    height: 30px;
+
+    padding: 0 8px;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.btn-limpar {
+    border: none;
+
+    background: #ffe8e8;
+
+    color: #c62828;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+.carrinho-vazio {
+    color: #777;
+
+    text-align: center;
+
+    padding: 20px 0;
+}
+
+
+/* =========================================================
+   ITEM DO CARRINHO
+========================================================= */
+
+.item-carrinho {
+    display: grid;
+
+    grid-template-columns: 1fr auto auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.item-nome {
+    font-weight: bold;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+
+.item-detalhes {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+.item-observacao {
+    color: #555;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.controle-quantidade {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.btn-quantidade {
+    width: 34px;
+
+    height: 34px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff6500;
+
+    color: white;
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+
+.btn-quantidade:hover {
+    background: #e95700;
+}
+
+
+.quantidade {
+    min-width: 25px;
+
+    text-align: center;
+
+    font-weight: bold;
+
+    font-size: 17px;
+}
+
+
+.item-subtotal {
+    color: #ff6500;
+
+    font-weight: bold;
+
+    min-width: 90px;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   RESUMO DE VALORES
+========================================================= */
+
+.resumo-valores {
+    margin-top: 20px;
+
+    border-top: 1px solid #eee;
+
+    padding-top: 15px;
+}
+
+
+.linha-valor {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 9px;
+
+    color: #555;
+}
+
+
+.linha-total {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 12px;
+
+    padding-top: 14px;
+
+    border-top: 2px solid #eee;
+
+    font-size: 23px;
+
+    font-weight: bold;
+}
+
+
+.linha-total span:last-child {
+    color: #ff6500;
+}
+
+
+/* =========================================================
+   ENTREGA / PAGAMENTO
+========================================================= */
+
+.secao-pedido {
+    margin-top: 30px;
+}
+
+
+.secao-pedido h3 {
+    margin-bottom: 13px;
+}
+
+
+.opcoes-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+
+.opcao {
+    border: 1px solid #ddd;
+
+    background: #fafafa;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+}
+
+
+.opcao:hover {
+    border-color: #ff6500;
+}
+
+
+.opcao input {
+    accent-color: #ff6500;
+
+    width: 18px;
+
+    height: 18px;
+}
+
+
+/* =========================================================
+   ENDEREÇO
+========================================================= */
+
+.form-endereco {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 18px;
+
+    background: #fff8f2;
+
+    border-radius: 12px;
+}
+
+
+.endereco-grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr;
+
+    gap: 12px;
+}
+
+
+.campo-full {
+    grid-column: 1 / -1;
+}
+
+
+.troco {
+    display: none;
+
+    margin-top: 12px;
+}
+
+
+/* =========================================================
+   FINALIZAÇÃO
+========================================================= */
+
+.btn-finalizar {
+    width: 100%;
+
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 16px;
+
+    border-radius: 12px;
+
+    background: #25d366;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+.btn-finalizar:hover {
+    background: #1ebe5d;
+}
+
+
+/* =========================================================
+   RESUMO FINAL
+========================================================= */
+
+#areaResumo {
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: #f8f8f8;
+
+    border: 1px solid #ddd;
+}
+
+
+.resumo-pedido-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.botoes-resumo {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+.btn-confirmar,
+.btn-cancelar {
+    flex: 1;
+
+    border: none;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+
+.btn-confirmar {
+    background: #25d366;
+
+    color: white;
+}
+
+
+.btn-cancelar {
+    background: #ddd;
+
+    color: #333;
+}
+
+
+/* =========================================================
+   TELA DE PEDIDO
+========================================================= */
+
+#telaPedido {
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 30px 20px;
+
+    background: #f5f5f5;
+}
+
+
+.pedido-card {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+}
+
+
+.pedido-sucesso {
+    font-size: 60px;
+
+    margin-bottom: 10px;
+}
+
+
+.pedido-card h1 {
+    color: #25a653;
+
+    margin-bottom: 10px;
+}
+
+
+.numero-pedido {
+    display: inline-block;
+
+    background: #fff0e5;
+
+    color: #ff6500;
+
+    padding: 8px 15px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    margin: 10px 0 25px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-pedido {
+    text-align: left;
+
+    margin-top: 25px;
+}
+
+
+.status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 0;
+
+    color: #aaa;
+}
+
+
+.status.ativo {
+    color: #222;
+
+    font-weight: bold;
+}
+
+
+.status-icone {
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    background: #eee;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.status.ativo .status-icone {
+    background: #25d366;
+
+    color: white;
+}
+
+
+.btn-voltar {
+    width: 100%;
+
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    background: #ff6500;
+
+    color: white;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+#modalProduto {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.55);
+
+    z-index: 300;
+
+    padding: 20px;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.modal-card {
+    width: 100%;
+
+    max-width: 500px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+}
+
+
+.modal-topo {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-topo button {
+    border: none;
+
+    background: #eee;
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+}
+
+
+.adicionais {
+    display: grid;
+
+    gap: 8px;
+
+    margin-top: 10px;
+}
+
+
+.adicional {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+}
+
+
+.modal-preco {
+    color: #ff6500;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+}
+
+
+/* =========================================================
+   CARRINHO FLUTUANTE
+========================================================= */
+
+.carrinho-flutuante {
+    display: none;
+
+    position: fixed;
+
+    bottom: 15px;
+
+    left: 15px;
+
+    right: 15px;
+
+    z-index: 150;
+
+    background: #111;
+
+    color: white;
+
+    padding: 15px 18px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 25px rgba(0,0,0,0.3);
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.carrinho-flutuante button {
+    border: none;
+
+    background: #ff6500;
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 15px;
+    }
+
+
+    .container {
+        padding:
+            20px
+            15px
+            130px;
+    }
+
+
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+
+
+    .opcoes-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .endereco-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .item-carrinho {
+        grid-template-columns: 1fr auto;
+
+        gap: 10px;
+    }
+
+
+    .item-subtotal {
+        text-align: left;
+
+        grid-column: 1;
+    }
+
+
+    .controle-quantidade {
+        grid-column: 2;
+
+        grid-row: 1 / span 2;
+    }
+
+
+    .carrinho-flutuante {
+        display: flex;
+    }
+
+
+    .busca {
+        max-width: none;
+    }
+
+
+    .topo-cardapio h2 {
+        font-size: 24px;
+    }
+
+
+    .produto-imagem {
+        height: 160px;
+    }
+}
